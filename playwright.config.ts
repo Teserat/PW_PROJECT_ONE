@@ -23,15 +23,17 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['allure-playwright', {outputFolder: 'allure-results'}], ['list']],
-
+    ['allure-playwright', { outputFolder: 'allure-results', screenshots: true, traces: true }],
+    ['list'],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'retain-on-first-failure',
+    screenshot: 'only-on-failure', // Dodaje zrzuty ekranu w przypadku błędów
+    trace: 'on', // Dodaje śledzenie działania testów
   },
 
   /* Configure projects for major browsers */
