@@ -23,8 +23,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['allure-playwright', {outputFolder: 'test-results'}], ['line']
-  ],
+    ['allure-playwright', {outputFolder: 'test-results'}], ['line']],
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -37,6 +36,7 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    /*
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
@@ -51,7 +51,7 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-
+    */
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
