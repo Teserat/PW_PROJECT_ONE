@@ -23,7 +23,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test tests/home.spec.ts
+        run: npx playwright test tests/final.test.ts
 
       - name: Debug allure-results
         run: ls -R allure-results
