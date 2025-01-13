@@ -32,18 +32,18 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    screenshot: 'only-on-failure', // Dodaje zrzuty ekranu w przypadku błędów
+    screenshot: 'on', // Dodaje zrzuty ekranu w przypadku błędów
     trace: 'on', // Dodaje śledzenie działania testów
   },
 
   /* Configure projects for major browsers */
   projects: [
-    /*
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
+    /*
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
@@ -65,10 +65,12 @@ export default defineConfig({
     // },
 
     /* Test against branded browsers. */
+    /*
     {
       name: 'Microsoft Edge',
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
     },
+    */
     // {
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
