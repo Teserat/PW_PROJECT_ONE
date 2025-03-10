@@ -12,12 +12,11 @@ test.describe('Testy logowania i wyszukiwarki', () => {
       await page.fill('#username', 'lukasz');
       await page.fill('#password', 'mistrzu');
       await page.click('button:has-text("Zaloguj")');
-      //await expect(page.locator('h2')).toHaveText('Wyszukiwarka');
       await page.fill('#searchInput', 'wniosek123');
       await page.click('button:has-text("Wyszukaj")');
   
-      const result = await page.locator('#searchResults').textContent();
-      expect(result).toBe('Znaleziono: wniosek123');
+      const result = await page.locator('#searchResults > div > div.record-header').textContent();
+      expect(result).toBe('wniosek 123');
     });
   
     test('MVP - Poprawne logowanie + Wyszukanie nieistniejącego wniosku + assercja : "Nie znaleziono wyniku."', async ({ page }) => {
@@ -26,11 +25,11 @@ test.describe('Testy logowania i wyszukiwarki', () => {
       await page.fill('#username', 'lukasz');
       await page.fill('#password', 'mistrzu');
       await page.click('button:has-text("Zaloguj")');
-      //await expect(page.locator('h2')).toHaveText('Wyszukiwarka');
       await page.fill('#searchInput', 'nieistniejacyWniosek');
       await page.click('button:has-text("Wyszukaj")');
   
-      const result = await page.locator('#searchResults').textContent();
-      expect(result).toBe('Nie znaleziono wyniku.');
+      //const errorMessage = page.locator('[data-test="search-error"]');
+      const errorMessage = page.locator('#searchError');
+      await expect(errorMessage).toHaveText('Nie znaleziono wyniku.');
     });
   });
