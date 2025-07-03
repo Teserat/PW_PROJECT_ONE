@@ -1,4 +1,4 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from './pages/LoginPage';
 import { MainPage } from './pages/MainPage';
 
@@ -11,7 +11,7 @@ test.describe('Login & search flow', () => {
     await loginPage.login('lukasz', 'mistrzu');
 
     await mainPage.search('wniosek123');
-    await mainPage.expectResult('wniosek 123');
+    await expect(mainPage.resultHeaderLocator).toHaveText('wniosek 123');
   });
 
   test(' Poprawne logowanie i brak wyników dla nieistniejącego wniosku', async ({ page }) => {
@@ -22,7 +22,18 @@ test.describe('Login & search flow', () => {
     await loginPage.login('lukasz', 'mistrzu');
 
     await mainPage.search('nieistniejacyWniosek');
-    await mainPage.expectError('Nie znaleziono wyniku.');
+    await expect(mainPage.errorBannerLocator).toHaveText('Nie znaleziono wyniku.');
+    
+
+  });
+  test(' Próba przejścia bez podana loginu i hasła', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.goto();
+    await page.getByRole('button', { name: 'Zaloguj' }).click();
+
+    await expect(loginPage.loginErrorLocator).toBeVisible();
+    await expect(loginPage.loginErrorLocator).toHaveText('Wpisz login i hasło!');
 
   });
 });
