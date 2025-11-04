@@ -1,13 +1,20 @@
 import { Page, Locator } from '@playwright/test';
 
 export class LoginPage {
-  constructor(private readonly page: Page) { }
 
   /* ----------  locators  ---------- */
-  private readonly usernameInput = this.page.locator('#username');
-  private readonly passwordInput = this.page.locator('#password');
-  private readonly loginButton = this.page.getByRole('button', { name: 'Zaloguj' });
-  private readonly loginError = this.page.locator('[data-test="login-error"]'); // <== DODANE
+  private readonly usernameInput;
+  private readonly passwordInput;
+  private readonly loginButton;
+  private readonly loginError;
+
+  constructor(private readonly page: Page) {
+    this.usernameInput = this.page.locator('#username');
+    this.passwordInput = this.page.locator('#password');
+    this.loginButton = this.page.getByRole('button', { name: 'Zaloguj' });
+    this.loginError = this.page.locator('[data-test="login-error"]');
+
+  }
 
   // get
   get loginErrorLocator(): Locator {
