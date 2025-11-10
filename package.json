@@ -1,12 +1,19 @@
 {
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.46.3",
+    "@typescript-eslint/parser": "^8.46.3",
     "playwright": "^1.49.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.49.1",
     "@types/node": "^22.10.5",
     "allure-commandline": "^2.32.0",
-    "allure-playwright": "^3.0.8"
+    "allure-playwright": "^3.0.8",
+    "eslint": "^9.39.1",
+    "eslint-plugin-playwright": "^2.3.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.3"
   },
   "scripts": {}
 }
