@@ -27,6 +27,7 @@ export default defineConfig({
   reporter: [
     ['allure-playwright', { outputFolder: 'allure-results', screenshots: true, traces: true }],
     ['list'],
+    ['html']
   ],
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
